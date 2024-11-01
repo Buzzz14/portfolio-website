@@ -22,7 +22,7 @@ const About = ({ mode }) => {
               : "bg-slate-800 bg-opacity-35"
           }
         >
-          <div
+          {/* <div
             className={
               mode === "dark"
                 ? "custom-shape-divider fill-slate-950"
@@ -40,7 +40,7 @@ const About = ({ mode }) => {
                 className="shape-fill"
               ></path>
             </svg>
-          </div>
+          </div> */}
           <div className="max-w-5xl mx-auto">
             <Heading
               title={"About me"}

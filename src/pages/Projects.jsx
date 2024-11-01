@@ -29,7 +29,7 @@ const projects = [
 const Projects = () => {
   return (
     <div className="max-w-7xl mx-auto p-10">
-      <Heading title={"My Projects"} sTitle={"These are my recent projects."} />
+      <Heading title={"My Recent Projects"} sTitle={"These are my recent projects."} />
       <Grid container spacing={2} className="p-10">
         {projects.map((project) => (
           <Grid

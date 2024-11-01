@@ -9,6 +9,34 @@ import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import WorkIcon from "@mui/icons-material/Work";
 import Heading from "./Heading";
 
+const degrees = [
+  {
+    title: "Secondary Education Examination (SEE)",
+    institution: "Nawartna Life School",
+    doc: 2020,
+    gpa: 3.95,
+  },
+  {
+    title: "School Level Certificate (SLC)",
+    institution: "Seabird International Higher Secondary School",
+    doc: 2022,
+    gpa: 3.41,
+  },
+  {
+    title: "BSc (Hons) Computer Systems Engineering",
+    institution: "ISMT College",
+    doc: "2022 - now",
+  },
+];
+const internships = [
+  {
+    title: "Digital Marketing Internship",
+    institution: "Theme Nepal",
+    description: "Managed and optimized Facebook and Instagram profiles, including creating and executing targeted ad campaigns. Developed engaging content for social media, blogs, and marketing materials, aligned with brand strategies. Effectively communicated with clients to understand their needs, provided updates, and adjusted marketing strategies accordingly. Assisted in SEO efforts and contributed to the execution of SMS and email marketing campaigns, enhancing online visibility and customer engagement.",
+    duration:"February 2022 to August 2022 (6 months)",
+  },
+];
+
 const Timeline = () => {
   return (
     <div className="pb-16 px-6">
@@ -19,112 +47,43 @@ const Timeline = () => {
       <div className="max-w-7xl mx-auto mt-4 shadow-2xl shadow-violet-950 bg-slate-600 rounded-xl bg-opacity-40 overflow-hidden">
         <div className="bg-slate-100 bg-opacity-5">
           <VerticalTimeline>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              contentArrowStyle={{
-                borderRight: "7px solid  rgb(33, 150, 243)",
-              }}
-              date="2011 - present"
-              iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              icon={<WorkIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">
-                Creative Director
-              </h3>
-              <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-              <p>
-                Creative Direction, User Experience, Visual Design, Project
-                Management, Team Leading
-              </p>
-            </VerticalTimelineElement>
+            {degrees.map((degree) => (
+              <VerticalTimelineElement
+                contentStyle={{
+                  background: "rgb(33, 150, 243)",
+                  color: "#fff",
+                }}
+                contentArrowStyle={{
+                  borderRight: "7px solid  rgb(33, 150, 243)",
+                }}
+                date={degree.doc}
+                iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+                icon={<SchoolIcon />}
+              >
+                <h3 className="font-semibold text-xl">{degree.title}</h3>
+                <h4 className="text-lg">{degree.institution}</h4>
+                <p className="text-sm">GPA: {degree.gpa}</p>
+              </VerticalTimelineElement>
+            ))}
 
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              contentArrowStyle={{
-                borderRight: "7px solid  rgb(33, 150, 243)",
-              }}
-              date="2010 - 2011"
-              iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              icon={<WorkIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">
-                San Francisco, CA
-              </h4>
-              <p>
-                Creative Direction, User Experience, Visual Design, SEO, Online
-                Marketing
-              </p>
-            </VerticalTimelineElement>
+            {internships.map((internship) => (
+              <VerticalTimelineElement
+                contentStyle={{
+                  background: "red",
+                  color: "#fff",
+                }}
+                contentArrowStyle={{
+                  borderRight: "7px solid  red",
+                }}
+                date={internship.duration}
+                iconStyle={{ background: "red", color: "#fff" }}
+                icon={<WorkIcon />}
+              >
+                <h3 className="font-semibold text-xl">{internship.title}</h3>
+                <p className="font-norml text-sm">{internship.description}</p>
+              </VerticalTimelineElement>
+            ))}
 
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2008 - 2010"
-              iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              icon={<WorkIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">Web Designer</h3>
-              <h4 className="vertical-timeline-element-subtitle">
-                Los Angeles, CA
-              </h4>
-              <p>User Experience, Visual Design</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2006 - 2008"
-              iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              icon={<WorkIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">Web Designer</h3>
-              <h4 className="vertical-timeline-element-subtitle">
-                San Francisco, CA
-              </h4>
-              <p>User Experience, Visual Design</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--education"
-              date="April 2013"
-              iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-              icon={<SchoolIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">
-                Content Marketing for Web, Mobile and Social Media
-              </h3>
-              <h4 className="vertical-timeline-element-subtitle">
-                Online Course
-              </h4>
-              <p>Strategy, Social Media</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--education"
-              date="November 2012"
-              iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-              icon={<SchoolIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">
-                Agile Development Scrum Master
-              </h3>
-              <h4 className="vertical-timeline-element-subtitle">
-                Certification
-              </h4>
-              <p>Creative Direction, User Experience, Visual Design</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--education"
-              date="2002 - 2006"
-              iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-              icon={<SchoolIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">
-                Bachelor of Science in Interactive Digital Media Visual Imaging
-              </h3>
-              <h4 className="vertical-timeline-element-subtitle">
-                Bachelor Degree
-              </h4>
-              <p>Creative Direction, Visual Design</p>
-            </VerticalTimelineElement>
             <VerticalTimelineElement
               iconStyle={{ background: "rgb(16, 204, 82)", color: "#fff" }}
               icon={<HourglassTopIcon />}

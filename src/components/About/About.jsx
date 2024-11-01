@@ -54,17 +54,20 @@ const About = ({ mode }) => {
                     <h1 className="text-4xl mb-4">Sushan Bajracharya</h1>
                     <div className="text-gray-300">
                       <p className="text-lg">
-                        I am a hardworking, passionate, and enthusiastic
-                        individual, always eager to learn. My enthusiasm,
-                        coupled with a proactive approach to learning, fuels my
-                        drive to make a meaningful impact in every endeavor.
+                        I am a dedicated, passionate, and enthusiastic
+                        individual who thrives on continuous learning and
+                        personal growth. My proactive approach and commitment to
+                        excellence drive me to make a meaningful impact in every
+                        project I undertake.
                       </p>
                       <br />
                       <p className="text-normal mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Possimus dolores quis quae dolor consequatur ex
-                        nihil explicabo cupiditate inventore officiis. Similique
-                        numquam aliquam id possimus quasi ex tenetur maxime quo?
+                        With a focus on developing solutions that merge
+                        creativity and functionality, I bring both vision and
+                        adaptability to my work. I am constantly exploring
+                        innovative ways to grow and make a difference, embracing
+                        challenges as opportunities to expand my skills and
+                        knowledge.
                       </p>
                       <Button
                         variant="contained"

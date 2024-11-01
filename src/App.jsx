@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
 import { Routes, Route } from "react-router-dom";
@@ -7,7 +7,14 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 
 const App = () => {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState(() => {
+    const savedMode = localStorage.getItem("mode");
+    return savedMode ? JSON.parse(savedMode) : "light";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("mode", JSON.stringify(mode));
+  }, [mode]);
 
   const toggleMode = () => {
     setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));

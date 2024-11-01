@@ -1,10 +1,15 @@
 import React from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const Hero = ({ mode }) => {
   const [text] = useTypewriter({
-    words: ["a Frontend Enthusiast."],
+    words: [
+      "a Frontend Developer.",
+      "a React Developer.",
+      "and a Java Enthusiast.",
+    ],
     loop: 0,
     typeSpeed: 120,
   });
@@ -17,7 +22,7 @@ const Hero = ({ mode }) => {
           : "bg-gradient-to-b from-red-500 to-violet-600"
       }
     >
-      <div className="mx-auto h-[32rem] max-w-7xl flex items-center justify-center lg:justify-between lg:flex-row">
+      <div className="mx-auto h-screen max-w-7xl flex items-center justify-center lg:justify-between lg:flex-row">
         <div className="p-10">
           <p className="text-2xl sm:text-3xl  lg:text-4xl font-bold text-slate-300 text-center lg:text-start">
             I'm
@@ -45,7 +50,7 @@ const Hero = ({ mode }) => {
                 },
               }}
             >
-              View my work
+              <Link to={"/projects"} >View my work</Link>
             </Button>
           </div>
         </div>

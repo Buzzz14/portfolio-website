@@ -46,7 +46,13 @@ export default function Navigation({ mode, toggleMode }) {
         <div className="relative flex h-20 items-center justify-between">
           <div className="absolute inset-y-0 right-0 flex items-center md:hidden">
             {/* Mobile menu button*/}
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 focus:outline-none ring-1 ring-inset ring-gray-400">
+            <DisclosureButton
+              className={
+                mode === "dark"
+                  ? "group relative inline-flex items-center justify-center rounded-md p-2 focus:outline-none ring-1 ring-inset ring-gray-400"
+                  : "group relative inline-flex items-center justify-center rounded-md p-2 focus:outline-none ring-1 ring-inset ring-red-400"
+              }
+            >
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               <Bars3Icon
@@ -62,9 +68,7 @@ export default function Navigation({ mode, toggleMode }) {
 
           <div className="flex flex-1 justify-between items-center md:items-stretch">
             <div className="flex flex-shrink-0 items-center">
-              <p className="font-semibold text-3xl">
-                SB
-              </p>
+              <p className="font-semibold text-3xl">SB</p>
             </div>
             <div className="hidden md:ml-6 md:block">
               <div className="flex space-x-4">
@@ -94,7 +98,7 @@ export default function Navigation({ mode, toggleMode }) {
               className="md:flex items-center cursor-pointer hover:scale-125 transition duration-700 ease-in-out hidden"
             >
               {mode === "light" ? (
-                  <LightModeIcon sx={{ color: "#ef4444" }} />
+                <LightModeIcon sx={{ color: "#ef4444" }} />
               ) : (
                 <DarkModeIcon sx={{ color: "white" }} />
               )}
@@ -116,9 +120,8 @@ export default function Navigation({ mode, toggleMode }) {
             )}
           </div>
           {navigation.map((item) => (
-            <DisclosureButton
+            <Link
               key={item.name}
-              as="Link"
               to={item.link}
               aria-current={item.current ? "page" : undefined}
               className={classNames(
@@ -133,7 +136,7 @@ export default function Navigation({ mode, toggleMode }) {
               )}
             >
               {item.name}
-            </DisclosureButton>
+            </Link>
           ))}
         </div>
       </DisclosurePanel>

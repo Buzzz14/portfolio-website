@@ -11,7 +11,7 @@ import Heading from "./Heading";
 
 const Timeline = () => {
   return (
-    <div className="pb-16">
+    <div className="pb-16 px-6">
       <Heading
         title={"Education and Work"}
         sTitle={"This is journey till now."}

@@ -7,7 +7,7 @@ import Projects from "../components/Project/Project";
 const Home = ({ mode }) => {
   return (
     <div>
-      <div className="mx-auto">
+      <div className="mx-auto overflow-x-hidden">
         <Hero mode={mode} />
         <About mode={mode} />
         <Projects mode={mode} />

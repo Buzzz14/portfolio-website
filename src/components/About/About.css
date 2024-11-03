@@ -5,26 +5,26 @@
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    margin-top: -1px; /* Adjust this value to remove gap if necessary */
+    margin-top: -1px; 
   }
   
   .custom-shape-divider-2 svg {
     position: relative;
     display: block;
-    width: 100vw; /* Ensures full width coverage */
+    width: 100%; 
     height: 150px;
     transform: rotateY(180deg);
   }
   
-  @media (min-width: 768px) { /* Medium screens */
+  @media (min-width: 768px) { 
     .custom-shape-divider-2 svg {
-      height: 140px; /* Adjust height for responsiveness */
+      height: 140px;
     }
   }
   
-  @media (min-width: 1024px) { /* Large screens */
+  @media (min-width: 1024px) {
     .custom-shape-divider-2 svg {
-      height: 130px; /* Further adjust height if needed */
+      height: 130px; 
     }
   }
   

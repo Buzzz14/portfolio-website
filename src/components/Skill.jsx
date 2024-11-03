@@ -1,5 +1,6 @@
 import React from "react";
 import Heading from "./Heading";
+import { div } from "framer-motion/client";
 
 const skills = [
   {
@@ -34,24 +35,24 @@ const skills = [
 
 const Skill = () => {
   return (
-    <>
-      <div className="mx-auto max-w-7xl p-8">
-        <Heading title={"Skills"} sTitle={"These are my skills"} />
+    <div className="bg-gray-100 rounded-e-full max-w-sm sm:max-w-md md:max-w-3xl lg:max-w-5xl my-16">
+      <div className="mx-auto max-w-7xl p-12 flex flex-col flex-wrap gap-6 items-start lg:ps-60">
+        <div className="text-gray-800">
+          <Heading title={"Skills"} side={"center"} />
+        </div>
         <div className="flex justify-center">
-          <div className="shadow-2xl mt-4 shadow-violet-950 bg-slate-600 rounded-xl bg-opacity-40 overflow-hidden">
-            <div className="inline-flex gap-5 p-10 flex-wrap bg-slate-100 bg-opacity-5">
-              {skills.map((skill) => (
-                <img
-                  className="h-16 object-cover"
-                  src={skill.src}
-                  alt={skill.title}
-                />
-              ))}
-            </div>
+          <div className="inline-flex gap-5 flex-wrap">
+            {skills.map((skill) => (
+              <img
+                className="h-16 object-cover"
+                src={skill.src}
+                alt={skill.title}
+              />
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

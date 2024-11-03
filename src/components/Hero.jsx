@@ -19,19 +19,19 @@ const Hero = ({ mode }) => {
       className={
         mode === "dark"
           ? "bg-gradient-to-b from-purple-950 to-slate-950"
-          : "bg-gradient-to-b from-red-500 to-violet-600"
+          : "bg-gradient-to-b to-red-500 from-violet-600 from-25%"
       }
     >
-      <div className="mx-auto h-screen max-w-7xl flex items-center justify-center lg:justify-between lg:flex-row">
-        <div className="p-10">
-          <p className="text-2xl sm:text-3xl  lg:text-4xl font-bold text-slate-300 text-center lg:text-start">
+      <div className="mx-auto max-w-7xl flex items-center justify-center lg:justify-between lg:flex-row">
+        <div className="p-24">
+          <p className="text-2xl sm:text-3xl  lg:text-4xl font-bold text-slate-100 text-center lg:text-start">
             I'm
           </p>
           <p className="text-5xl sm:6xl lg:text-7xl  max-w-xl text-white font-extrabold text-center lg:text-start">
             Sushan Bajracharya,
           </p>
           <br />
-          <div className="text-xl sm:text-2xl lg:text-3xl text-center text-slate-300 lg:text-start font-mono">
+          <div className="text-xl sm:text-2xl lg:text-3xl text-center text-slate-100 lg:text-start font-mono">
             <span>{text}</span>
             <span>
               <Cursor />
@@ -44,10 +44,8 @@ const Hero = ({ mode }) => {
                 padding: "0.5rem 1.5rem",
                 textTransform: "capitalize",
                 fontSize: "1rem",
-                backgroundColor: "#ed2c41",
-                "&:hover": {
-                  backgroundColor: "#ed4054",
-                },
+                background: "#f59e0b",
+                color: mode==="dark"?"#020617":"#ffffff"
               }}
             >
               <Link to={"/projects"} >View my work</Link>

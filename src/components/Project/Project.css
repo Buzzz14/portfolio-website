@@ -10,7 +10,7 @@
     position: relative;
     display: block;
     width: 100vw; /* Ensure full width coverage */
-    height: 150px;
+    height: 155px;
   }
   
   @media (min-width: 768px) { /* For medium screens */

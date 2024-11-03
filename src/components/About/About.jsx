@@ -37,7 +37,7 @@ const About = ({ mode }) => {
               >
                 <path
                   d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-                  class="shape-fill"
+                  className="shape-fill"
                 ></path>
               </svg>
             </svg>
@@ -52,13 +52,13 @@ const About = ({ mode }) => {
               </div>
             </div>
             <div className="">
-              <div className="flex justify-between flex-col lg:flex-row items-center lg:items-start gap-16 py-16">
+              <div className="flex md:justify-center justify-between flex-col md:flex-row items-center md:items-start gap-16 py-16">
                 <img
-                  className="rounded-2xl w-60 lg:w-96 shadow-xl"
+                  className="rounded-2xl w-60 md:w-96 shadow-xl"
                   src={Photo}
                   alt="photo"
                 />
-                <div className="max-w-96 text-center lg:mt-8 lg:text-right">
+                <div className="max-w-96 text-center md:mt-8 md:text-right">
                   <div
                     className={
                       mode === "dark" ? "text-slate-100" : "text-slate-800"
@@ -71,7 +71,7 @@ const About = ({ mode }) => {
                       mode === "dark" ? "text-slate-300" : "text-slate-600"
                     }
                   >
-                    <p className="text-lg text-justify w-80 lg:w-96 ">
+                    <p className="text-lg text-justify w-80 md:w-96 ">
                       I am a dedicated, passionate, and enthusiastic individual
                       who thrives on continuous learning and personal growth. My
                       proactive approach and commitment to excellence drive me
@@ -86,6 +86,9 @@ const About = ({ mode }) => {
                         fontSize: "1rem",
                         background: "#f59e0b",
                         color: mode==="dark"?"#020617":"#ffffff"                        
+                      }}
+                      onClick={() => {
+                        window.scrollTo(0, 0);
                       }}
                     >
                       <Link to="/about">Know more...</Link>

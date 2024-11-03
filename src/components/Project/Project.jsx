@@ -1,9 +1,9 @@
 import React from "react";
 import Grid from "@mui/material/Grid2";
 import { Button } from "@mui/material";
-import Heading from "./Heading";
+import Heading from "../Heading";
 import "./Project.css";
-import { projects } from "../data/Projects";
+import { projects } from "../../data/Projects";
 
 const Project = ({ mode }) => {
   return (
@@ -31,7 +31,7 @@ const Project = ({ mode }) => {
             >
               <path
                 d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-                class="shape-fill"
+                classNames="shape-fill"
               ></path>
             </svg>
           </div>
@@ -40,14 +40,18 @@ const Project = ({ mode }) => {
           <div className="text-gray-100">
             <Heading title={"My Recent Projects"} />
           </div>
-          <Grid container spacing={4} className="py-10 px-4">
+          <Grid container spacing={4} className="py-10 px-6">
             {projects.map((project) => (
               <Grid
                 size={{ sm: 12, md: 6, lg: 4 }}
                 className="overflow-hidden cursor-pointer shadow-2xl shadow-violet-950 bg-gray-500 rounded-lg bg-opacity-40"
               >
                 <div className="flex flex-col text-white">
-                  <img className="h-48" src={project.src} alt={project.title} />
+                  <img
+                    className="h-48 object-cover"
+                    src={project.src}
+                    alt={project.title}
+                  />
 
                   <div className="p-5 flex flex-col gap-3">
                     <h1 className="text-xl font-semibold">{project.title}</h1>
@@ -63,7 +67,7 @@ const Project = ({ mode }) => {
                       }}
                       variant="outlined"
                     >
-                      View Application
+                      <a href={project.appLink} target="_blank">View Application</a>
                     </Button>
 
                     <Button
@@ -74,7 +78,9 @@ const Project = ({ mode }) => {
                       }}
                       variant="outlined"
                     >
-                      View Repo
+                      <a href={project.gitLink} target="_blank">
+                        View Repo
+                      </a>
                     </Button>
                     <div className="flex gap-2 flex-wrap justify-center items-center mt-12">
                       {project.techStack.map((tech) => (

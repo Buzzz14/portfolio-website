@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid2";
 import { Button } from "@mui/material";
 import { projects } from "../data/Projects";
 
-const Projects = ({mode}) => {
+const Projects = ({ mode }) => {
   return (
     <div
       className={
@@ -25,7 +25,11 @@ const Projects = ({mode}) => {
               className="overflow-hidden cursor-pointer shadow-2xl shadow-violet-950 bg-gray-500 rounded-lg bg-opacity-40"
             >
               <div className="flex flex-col text-white">
-                <img className="h-48" src={project.src} alt={project.title} />
+                <img
+                  className="h-48 object-cover"
+                  src={project.src}
+                  alt={project.title}
+                />
 
                 <div className="p-5 flex flex-col gap-3">
                   <h1 className="text-xl font-semibold">{project.title}</h1>
@@ -41,7 +45,9 @@ const Projects = ({mode}) => {
                     }}
                     variant="outlined"
                   >
-                    View Application
+                    <a href={project.appLink} target="_blank">
+                      View Application
+                    </a>
                   </Button>
 
                   <Button
@@ -52,7 +58,9 @@ const Projects = ({mode}) => {
                     }}
                     variant="outlined"
                   >
-                    View Repo
+                    <a href={project.gitLink} target="_blank">
+                      View Repo
+                    </a>
                   </Button>
                   <div className="flex gap-2 flex-wrap justify-center items-center mt-12">
                     {project.techStack.map((tech) => (

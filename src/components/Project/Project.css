@@ -1,0 +1,27 @@
+.custom-shape-divider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -1px; /* Fine-tune this value if a gap persists */
+  }
+  
+  .custom-shape-divider svg {
+    position: relative;
+    display: block;
+    width: 100vw; /* Ensure full width coverage */
+    height: 150px;
+  }
+  
+  @media (min-width: 768px) { /* For medium screens */
+    .custom-shape-divider svg {
+      height: 140px; /* Adjust as needed */
+    }
+  }
+  
+  @media (min-width: 1024px) { /* For large screens */
+    .custom-shape-divider svg {
+      height: 120px; /* Further adjustment if necessary */
+    }
+  }
+  

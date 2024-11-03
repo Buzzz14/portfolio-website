@@ -5,12 +5,26 @@
     width: 100%;
     overflow: hidden;
     line-height: 0;
-}
-
-.custom-shape-divider-2 svg {
+    margin-top: -1px; /* Adjust this value to remove gap if necessary */
+  }
+  
+  .custom-shape-divider-2 svg {
     position: relative;
     display: block;
-    width: calc(100% + 1.3px);
+    width: 100vw; /* Ensures full width coverage */
     height: 150px;
     transform: rotateY(180deg);
-}
+  }
+  
+  @media (min-width: 768px) { /* Medium screens */
+    .custom-shape-divider-2 svg {
+      height: 140px; /* Adjust height for responsiveness */
+    }
+  }
+  
+  @media (min-width: 1024px) { /* Large screens */
+    .custom-shape-divider-2 svg {
+      height: 130px; /* Further adjust height if needed */
+    }
+  }
+  

@@ -18,13 +18,13 @@ const About = ({mode}) => {
           <Heading title={"About me"} side={"center"} />
         </div>
         <div className="px-8">
-          <div className="flex justify-between items-center lg:items-start flex-col lg:flex-row gap-16">
+          <div className="flex justify-between items-center md:items-start flex-col md:flex-row gap-16">
             <img
-              className="rounded-lg w-60 lg:w-96 shadow-xl"
+              className="rounded-lg w-60 md:w-96 shadow-xl"
               src={Photo}
               alt="photo"
             />
-            <div className="text-slate-100 text-lg text-justify lg:text-left">
+            <div className="text-slate-100 text-lg text-justify md:text-left">
               <p>
                 I am a dedicated, passionate, and enthusiastic individual who
                 thrives on continuous learning and personal growth. My proactive

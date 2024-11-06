@@ -37,31 +37,66 @@ const Projects = ({ mode }) => {
                     {project.description}
                   </p>
 
-                  <Button
-                    sx={{
-                      borderColor: "white",
-                      color: "white",
-                      textTransform: "capitalize",
-                    }}
-                    variant="outlined"
-                  >
-                    <a href={project.appLink} target="_blank">
-                      View Application
-                    </a>
-                  </Button>
+                  {project.hasAppLink ? (
+                    <>
+                      <Button
+                        component="a"
+                        href={project.appLink}
+                        target="_blank"
+                        sx={{
+                          borderColor: "white",
+                          color: "white",
+                          textTransform: "capitalize",
+                        }}
+                        variant="outlined"
+                      >
+                        View Application
+                      </Button>
+                      <Button
+                        component="a"
+                        href={project.gitLink}
+                        target="_blank"
+                        sx={{
+                          borderColor: "white",
+                          color: "white",
+                          textTransform: "capitalize",
+                        }}
+                        variant="outlined"
+                      >
+                        View Repo
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        component="a"
+                        href={project.feLink}
+                        target="_blank"
+                        sx={{
+                          borderColor: "white",
+                          color: "white",
+                          textTransform: "capitalize",
+                        }}
+                        variant="outlined"
+                      >
+                        View FE
+                      </Button>
+                      <Button
+                        component="a"
+                        href={project.beLink}
+                        target="_blank"
+                        sx={{
+                          borderColor: "white",
+                          color: "white",
+                          textTransform: "capitalize",
+                        }}
+                        variant="outlined"
+                      >
+                        View BE
+                      </Button>
+                    </>
+                  )}
 
-                  <Button
-                    sx={{
-                      borderColor: "white",
-                      color: "white",
-                      textTransform: "capitalize",
-                    }}
-                    variant="outlined"
-                  >
-                    <a href={project.gitLink} target="_blank">
-                      View Repo
-                    </a>
-                  </Button>
                   <div className="flex gap-2 flex-wrap justify-center items-center mt-12">
                     {project.techStack.map((tech) => (
                       <p className="px-4 py-2 text-slate-800 rounded-full bg-gray-100 text-center font-semibold">

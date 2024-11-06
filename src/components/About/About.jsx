@@ -79,19 +79,21 @@ const About = ({ mode }) => {
                     </p>
                     <br />
                     <Button
+                      component={Link}
                       variant="contained"
+                      to="/about"
                       sx={{
                         padding: "0.5rem 1.5rem",
                         textTransform: "capitalize",
                         fontSize: "1rem",
                         background: "#f59e0b",
-                        color: mode==="dark"?"#020617":"#ffffff"                        
+                        color: mode === "dark" ? "#020617" : "#ffffff",
                       }}
                       onClick={() => {
                         window.scrollTo(0, 0);
                       }}
                     >
-                      <Link to="/about">Know more...</Link>
+                      Know more...
                     </Button>
                   </div>
                 </div>

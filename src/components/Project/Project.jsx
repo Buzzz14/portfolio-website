@@ -60,6 +60,9 @@ const Project = ({ mode }) => {
                     </p>
 
                     <Button
+                      component="a"
+                      href={project.appLink}
+                      target="_blank"
                       sx={{
                         borderColor: "white",
                         color: "white",
@@ -67,10 +70,13 @@ const Project = ({ mode }) => {
                       }}
                       variant="outlined"
                     >
-                      <a href={project.appLink} target="_blank">View Application</a>
+                      View Application
                     </Button>
 
                     <Button
+                      component="a"
+                      target="_blank"
+                      href={project.gitLink}
                       sx={{
                         borderColor: "white",
                         color: "white",
@@ -78,9 +84,7 @@ const Project = ({ mode }) => {
                       }}
                       variant="outlined"
                     >
-                      <a href={project.gitLink} target="_blank">
-                        View Repo
-                      </a>
+                      View Repo
                     </Button>
                     <div className="flex gap-2 flex-wrap justify-center items-center mt-12">
                       {project.techStack.map((tech) => (

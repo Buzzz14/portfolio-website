@@ -39,16 +39,18 @@ const Hero = ({ mode }) => {
           </div>
           <div className="my-4 text-center md:text-start font-medium">
             <Button
+              component={Link}
+              to={"/projects"}
               variant="contained"
               sx={{
                 padding: "0.5rem 1.5rem",
                 textTransform: "capitalize",
                 fontSize: "1rem",
                 background: "#f59e0b",
-                color: mode==="dark"?"#020617":"#ffffff"
+                color: mode === "dark" ? "#020617" : "#ffffff",
               }}
             >
-              <Link to={"/projects"} >View my work</Link>
+              View my work
             </Button>
           </div>
         </div>

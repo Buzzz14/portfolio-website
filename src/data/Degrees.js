@@ -1,7 +1,7 @@
 export const degrees = [
     {
       title: "Secondary Education Examination (SEE)",
-      institution: "Nawartna Life School",
+      institution: "Nawaratna English Secondary School",
       doc: 2020,
       gpa: 3.95,
     },
@@ -13,7 +13,7 @@ export const degrees = [
     },
     {
       title: "BSc (Hons) Computer Systems Engineering",
-      institution: "ISMT College",
-      doc: "2022 - now",
+      institution: "University of Sunderland",
+      doc: 2024,
     },
   ];

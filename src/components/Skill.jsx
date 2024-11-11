@@ -1,37 +1,6 @@
 import React from "react";
 import Heading from "./Heading";
-import { div } from "framer-motion/client";
-
-const skills = [
-  {
-    title: "HTML",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-  },
-  {
-    title: "CSS",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-  },
-  {
-    title: "Javascript",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-  },
-  {
-    title: "React",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-  },
-  {
-    title: "Tailwind",
-    src: "  https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-  },
-  {
-    title: "Java",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original-wordmark.svg",
-  },
-  {
-    title: "MySQL",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
-  },
-];
+import {skills} from "../data/Skills"
 
 const Skill = () => {
   return (

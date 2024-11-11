@@ -24,7 +24,7 @@ const Timeline = () => {
             {degrees.map((degree) => (
               <VerticalTimelineElement
                 contentStyle={{
-                  background: "#5b34b4", // Variant 2 for Education
+                  background: "#5b34b4",
                   color: "#fff",
                 }}
                 contentArrowStyle={{
@@ -40,26 +40,26 @@ const Timeline = () => {
               </VerticalTimelineElement>
             ))}
 
-            {jobs.map((internship) => (
+            {jobs.map((job) => (
               <VerticalTimelineElement
                 contentStyle={{
-                  background: "#f97316", // Variant 2 for Work
+                  background: "#f97316",
                   color: "#fff",
                 }}
                 contentArrowStyle={{
                   borderRight: "7px solid #f97316",
                 }}
-                date={internship.duration}
+                date={job.duration}
                 iconStyle={{ background: "#f97316", color: "#fff" }}
                 icon={<WorkIcon />}
               >
-                <h3 className="font-semibold text-xl">{internship.title}</h3>
-                <p className="font-normal text-sm">{internship.description}</p>
+                <h3 className="font-semibold text-xl">{job.title}</h3>
+                <p className="font-normal text-sm">{job.description}</p>
               </VerticalTimelineElement>
             ))}
 
             <VerticalTimelineElement
-              iconStyle={{ background: "#10b981", color: "#fff" }} // Variant 2 for Hourglass Icon
+              iconStyle={{ background: "#10b981", color: "#fff" }}
               icon={<HourglassTopIcon />}
             />
           </VerticalTimeline>

@@ -53,8 +53,8 @@ const App = () => {
 
       <div>
         <Routes>
-          <Route path="/" element={<Home mode={mode} />}></Route>
-          <Route path="/home" element={<Home mode={mode} />}></Route>
+          <Route path="/" element={<Home mode={mode} />}/>
+          <Route path="/home" element={<Home mode={mode} />}/>
           <Route path="/about" element={<About mode={mode} />} />
           <Route path="/projects" element={<Projects mode={mode} />} />
         </Routes>

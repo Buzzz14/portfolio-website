@@ -14,10 +14,6 @@ import { jobs } from "../data/Jobs";
 const Timeline = () => {
   return (
     <div className="pb-16 px-6">
-      <div className="text-gray-100">
-        <Heading title={"Education and Work"} side={"center"} />
-      </div>
-
       <div className="max-w-7xl mx-auto mt-16">
         <div className="">
           <VerticalTimeline>

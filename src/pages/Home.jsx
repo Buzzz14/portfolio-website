@@ -1,18 +1,20 @@
 import React from "react";
-
 import Hero from "../components/Hero";
-import About from "../components/About/About";
 import Projects from "../components/Project/Project";
+import { motion } from "framer-motion";
 
 const Home = ({ mode }) => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="mx-auto overflow-x-hidden">
         <Hero mode={mode} />
-        <About mode={mode} />
         <Projects mode={mode} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

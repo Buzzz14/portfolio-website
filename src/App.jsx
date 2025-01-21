@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion"; // Import from Framer Motion
+import { motion, useAnimation } from "framer-motion";
 import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 
 const App = () => {
   const [mode, setMode] = useState(() => {
     const savedMode = localStorage.getItem("mode");
-    return savedMode ? JSON.parse(savedMode) : "light";
-  });
+    return savedMode ? JSON.parse(savedMode) : "dark";
+  });  
 
   const [showScrollIcon, setShowScrollIcon] = useState(false);
-  const controls = useAnimation(); // Animation controls
+  const controls = useAnimation();
 
   useEffect(() => {
     localStorage.setItem("mode", JSON.stringify(mode));
@@ -32,18 +33,17 @@ const App = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
-        // Show icon after scrolling 100px
         setShowScrollIcon(true);
-        controls.start({ opacity: 1, y: 0 }); // Animate in
+        controls.start({ opacity: 1, y: 0 });
       } else {
         setShowScrollIcon(false);
-        controls.start({ opacity: 0, y: 50 }); // Animate out
+        controls.start({ opacity: 0, y: 50 });
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll); // Cleanup on unmount
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [controls]);
 
@@ -57,18 +57,23 @@ const App = () => {
           <Route path="/home" element={<Home mode={mode} />}/>
           <Route path="/about" element={<About mode={mode} />} />
           <Route path="/projects" element={<Projects mode={mode} />} />
+          <Route path="/contact" element={<Contact mode={mode} />} />
         </Routes>
       </div>
 
       <Footer mode={mode} />
 
-      {showScrollIcon && ( // Conditionally render the scroll-to-top icon
+      {showScrollIcon && (
         <motion.div
-          className="fixed bottom-6 right-4 cursor-pointer"
+          className={`fixed bottom-6 right-4 cursor-pointer p-3 rounded-full z-20 ${
+            mode === "dark" 
+              ? "bg-amber-500 hover:bg-amber-600" 
+              : "bg-violet-600 hover:bg-violet-700"
+          } transition-colors duration-300 shadow-lg`}
           onClick={scrollToTop}
-          initial={{ opacity: 0, y: 50 }} // Initial state before animation
-          animate={controls} // Animation controls
-          transition={{ duration: 0.2 }} // Transition duration
+          initial={{ opacity: 0, y: 50 }}
+          animate={controls}
+          transition={{ duration: 0.2 }}
         >
           <KeyboardDoubleArrowUpIcon fontSize="large" className="text-white" />
         </motion.div>

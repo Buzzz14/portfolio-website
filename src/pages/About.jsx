@@ -19,7 +19,7 @@ const About = ({ mode }) => {
 
         <div className="grid lg:grid-cols-2 gap-24 items-center max-w-xl lg:max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="flex-1 mt-12 md:mt-0 relative"

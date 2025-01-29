@@ -7,7 +7,7 @@ import projectFive from "../assets/text-master.jpg";
 export const projects = [
     {
         title: "The Fitness Club",
-        description: "It is a website for a gym created using react and tailwind.",
+        description: "It is a responsive website for a gym created using plain html and css.",
         src: projectThree,
         techStack: ["HTML", "CSS"],
         appLink: "https://the-fitness-club-kioo.onrender.com/",
@@ -27,7 +27,7 @@ export const projects = [
     {
         title: "Text-Master",
         description:
-            "Text-Master is a project developed using react and bootstrap which can be used to manipulate your text according to your requirements.",
+            "Text-Master is a website developed using react and bootstrap which manipulates your text according to your requirements.",
         src: projectFive,
         techStack: ["Bootstrap", "React", "HTML", "CSS"],
         appLink: "https://text-master-y1bc.onrender.com",

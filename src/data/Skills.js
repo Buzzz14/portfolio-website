@@ -15,10 +15,10 @@ export const skills = [
         title: "Javascript",
         src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
     },
-    {
-        title: "MongoDB",
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
-    },
+    // {
+    //     title: "MongoDB",
+    //     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+    // },
     {
         title: "Express",
         src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",

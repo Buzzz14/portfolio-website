@@ -24,7 +24,7 @@ const Hero = ({ mode }) => {
           : "bg-gradient-to-b to-violet-600 from-red-500 from-25%"
       }
     >
-      <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between px-8 py-20">
+      <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between px-8 py-20">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -150,7 +150,7 @@ const Hero = ({ mode }) => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="hidden lg:block flex-1 mt-12 md:mt-0 relative"
+          className="hidden lg:block flex-1 mt-12 md:mt-0 relative max-w-lg"
         >
           <div className="relative z-10">
             <img

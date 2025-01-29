@@ -42,7 +42,7 @@ const Footer = ({ mode }) => {
         }
       >
         <div className="flex flex-col gap-6 lg:flex-row items-center justify-between py-8 px-11 mx-auto max-w-7xl">
-          <p className="z-10 flex items-center gap-1">
+          <p className="z-10 flex items-center gap-1 text-center">
             Made with{" "}
             <motion.span whileHover={{ scale: 1.2 }} className="inline-block">
               <FavoriteIcon className="text-red-500 hover:text-red-600 transition-colors duration-300" />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
+import Loader from "./components/loader";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
@@ -13,14 +14,25 @@ const App = () => {
   const [mode, setMode] = useState(() => {
     const savedMode = localStorage.getItem("mode");
     return savedMode ? JSON.parse(savedMode) : "dark";
-  });  
+  });
 
   const [showScrollIcon, setShowScrollIcon] = useState(false);
+  const [loading, setLoading] = useState(true);
   const controls = useAnimation();
 
   useEffect(() => {
     localStorage.setItem("mode", JSON.stringify(mode));
   }, [mode]);
+
+  useEffect(() => {
+    const handleLoad = () => setLoading(false);
+    if (document.readyState === "complete") {
+      setLoading(false);
+    } else {
+      window.addEventListener("load", handleLoad);
+    }
+    return () => window.removeEventListener("load", handleLoad);
+  }, []);
 
   const toggleMode = () => {
     setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
@@ -47,14 +59,22 @@ const App = () => {
     };
   }, [controls]);
 
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <div className={mode === "dark" ? "bg-purple-950" : "bg-red-500"}>
+    <div className={`${mode === "dark" ? "bg-purple-950" : "bg-red-500"}`}>
       <Navigation mode={mode} toggleMode={toggleMode} />
 
       <div>
         <Routes>
-          <Route path="/" element={<Home mode={mode} />}/>
-          <Route path="/home" element={<Home mode={mode} />}/>
+          <Route path="/" element={<Home mode={mode} />} />
+          <Route path="/home" element={<Home mode={mode} />} />
           <Route path="/about" element={<About mode={mode} />} />
           <Route path="/projects" element={<Projects mode={mode} />} />
           <Route path="/contact" element={<Contact mode={mode} />} />
@@ -66,8 +86,8 @@ const App = () => {
       {showScrollIcon && (
         <motion.div
           className={`fixed bottom-6 right-4 cursor-pointer p-3 rounded-full z-20 ${
-            mode === "dark" 
-              ? "bg-amber-500 hover:bg-amber-600" 
+            mode === "dark"
+              ? "bg-amber-500 hover:bg-amber-600"
               : "bg-violet-600 hover:bg-violet-700"
           } transition-colors duration-300 shadow-lg`}
           onClick={scrollToTop}

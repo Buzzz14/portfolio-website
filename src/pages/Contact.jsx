@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Heading from "../components/Heading";
 import { motion } from "framer-motion";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = ({ mode }) => {
   const [formData, setFormData] = useState({
@@ -21,16 +23,16 @@ const Contact = ({ mode }) => {
 
       const data = await response.json();
       if (data.success) {
-        alert("Message sent successfully!");
+        toast.success("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        alert("Failed to send message.");
+        toast.error("Failed to send message.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error sending message.");
+      toast.error("Error sending message.");
     }
-  };  
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -183,6 +185,8 @@ const Contact = ({ mode }) => {
             </div>
           </div>
         </motion.div>
+
+        <ToastContainer />
       </div>
     </div>
   );

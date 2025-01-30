@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
-import Loader from "./components/loader";
+import Loader from "./components/Loader";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";

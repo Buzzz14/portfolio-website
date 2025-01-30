@@ -25,12 +25,27 @@ const App = () => {
   }, [mode]);
 
   useEffect(() => {
-    const handleLoad = () => setLoading(false);
+    const minLoadTime = 2000;
+    const startTime = Date.now();
+
+    const handleLoad = () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = minLoadTime - elapsedTime;
+
+      setTimeout(
+        () => {
+          setLoading(false);
+        },
+        remainingTime > 0 ? remainingTime : 0
+      );
+    };
+
     if (document.readyState === "complete") {
-      setLoading(false);
+      handleLoad();
     } else {
       window.addEventListener("load", handleLoad);
     }
+
     return () => window.removeEventListener("load", handleLoad);
   }, []);
 

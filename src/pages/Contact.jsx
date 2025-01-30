@@ -58,7 +58,7 @@ const Contact = ({ mode }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-8 shadow-xl">
+          <div className="bg-white/20 backdrop-blur-md rounded-lg p-8 shadow-xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label

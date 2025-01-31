@@ -1,0 +1,24 @@
+{
+  "name": "Sushan Bajracharya - Developer Portfolio",
+  "short_name": "Sushan Portfolio",
+  "description": "Sushan Bajracharya - Passionate developer focused on creativity and functionality. Explore my portfolio to see innovative projects and solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "keywords": "Sushan Bajracharya, portfolio, web developer, software engineer, creative solutions, innovative development, frontend, backend, full-stack",
+  "author": "Sushan Bajracharya",
+  "orientation": "portrait"
+}

@@ -40,13 +40,49 @@ const App = () => {
       );
     };
 
+    const checkAllImagesLoaded = () => {
+      const images = document.querySelectorAll("img");
+      let loadedCount = 0;
+
+      if (images.length === 0) {
+        handleLoad();
+        return;
+      }
+
+      images.forEach((img) => {
+        if (img.complete) {
+          loadedCount++;
+        } else {
+          img.addEventListener("load", () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+              handleLoad();
+            }
+          });
+
+          img.addEventListener("error", () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+              handleLoad();
+            }
+          });
+        }
+      });
+
+      if (loadedCount === images.length) {
+        handleLoad();
+      }
+    };
+
     if (document.readyState === "complete") {
-      handleLoad();
+      checkAllImagesLoaded();
     } else {
-      window.addEventListener("load", handleLoad);
+      window.addEventListener("load", checkAllImagesLoaded);
     }
 
-    return () => window.removeEventListener("load", handleLoad);
+    return () => {
+      window.removeEventListener("load", checkAllImagesLoaded);
+    };
   }, []);
 
   const toggleMode = () => {

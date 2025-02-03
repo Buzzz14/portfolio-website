@@ -28,7 +28,7 @@ const App = () => {
     const minLoadTime = 2000;
     const startTime = Date.now();
 
-    const handleLoad = () => {
+    const handleLoadComplete = () => {
       const elapsedTime = Date.now() - startTime;
       const remainingTime = minLoadTime - elapsedTime;
 
@@ -40,48 +40,57 @@ const App = () => {
       );
     };
 
-    const checkAllImagesLoaded = () => {
+    const checkImagesLoaded = () => {
       const images = document.querySelectorAll("img");
-      let loadedCount = 0;
+      let loadedImages = 0;
 
       if (images.length === 0) {
-        handleLoad();
+        handleLoadComplete();
         return;
       }
 
       images.forEach((img) => {
-        if (img.complete) {
-          loadedCount++;
+        if (img.complete && img.naturalHeight !== 0) {
+          loadedImages++;
         } else {
           img.addEventListener("load", () => {
-            loadedCount++;
-            if (loadedCount === images.length) {
-              handleLoad();
+            loadedImages++;
+            if (loadedImages === images.length) {
+              handleLoadComplete();
             }
           });
 
           img.addEventListener("error", () => {
-            loadedCount++;
-            if (loadedCount === images.length) {
-              handleLoad();
+            loadedImages++;
+            if (loadedImages === images.length) {
+              handleLoadComplete();
             }
           });
         }
       });
 
-      if (loadedCount === images.length) {
-        handleLoad();
+      if (loadedImages === images.length) {
+        handleLoadComplete();
       }
     };
 
+    const observer = new MutationObserver(() => {
+      checkImagesLoaded();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    document.fonts.ready.then(checkImagesLoaded);
+
     if (document.readyState === "complete") {
-      checkAllImagesLoaded();
+      checkImagesLoaded();
     } else {
-      window.addEventListener("load", checkAllImagesLoaded);
+      window.addEventListener("load", checkImagesLoaded);
     }
 
     return () => {
-      window.removeEventListener("load", checkAllImagesLoaded);
+      observer.disconnect();
+      window.removeEventListener("load", checkImagesLoaded);
     };
   }, []);
 

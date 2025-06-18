@@ -13,7 +13,7 @@ export const degrees = [
     },
     {
       title: "BSc (Hons) Computer Systems Engineering",
-      institution: "University of Sunderland",
-      doc: 2024,
+      institution: "ISMT College / University of Sunderland",
+      doc: 2025,
     },
   ];

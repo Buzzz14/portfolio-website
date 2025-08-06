@@ -1,17 +1,18 @@
-import React from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Photo from "../assets/photo.jpg";
+import PropTypes from "prop-types";
 
 const Hero = ({ mode }) => {
   const [text] = useTypewriter({
     words: [
       "a Frontend Developer.",
-      "a Full Stack Developer.",
       "React Developer.",
-      "Next Developer.",
+      "a JavaScript Enthusiast.",
+      "a Problem Solver.",
+      "a Tech Learner.",
     ],
     loop: 0,
     typeSpeed: 120,
@@ -39,7 +40,7 @@ const Hero = ({ mode }) => {
               transition={{ delay: 0.2 }}
               className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-100"
             >
-              Hello, I'm
+              Hello, I&apos;m
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -176,6 +177,10 @@ const Hero = ({ mode }) => {
       </div>
     </div>
   );
+};
+
+Hero.propTypes = {
+  mode: PropTypes.string.isRequired,
 };
 
 export default Hero;

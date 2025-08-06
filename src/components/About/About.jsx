@@ -1,9 +1,9 @@
-import React from "react";
 import Heading from "../Heading";
 import Photo from "../../assets/photo.jpg";
 import "./About.css";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const About = ({ mode }) => {
   return (
@@ -104,6 +104,10 @@ const About = ({ mode }) => {
       </div>
     </div>
   );
+};
+
+About.propTypes = {
+  mode: PropTypes.string.isRequired,
 };
 
 export default About;

@@ -1,4 +1,3 @@
-import React from "react";
 import Heading from "../components/Heading";
 import Grid from "@mui/material/Grid2";
 import { Button } from "@mui/material";
@@ -6,6 +5,35 @@ import { projects } from "../data/Projects";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import PropTypes from "prop-types";
+
+const ProjectButton = ({ href, text, mode }) => (
+  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+    <Button
+      component="a"
+      href={href}
+      target="_blank"
+      sx={{
+        width: "100%",
+        marginBottom: text === "View Application" ? "0.75rem" : 0,
+        borderColor: "white",
+        color: "white",
+        textTransform: "capitalize",
+        "&:hover": {
+          backgroundColor:
+            mode === "dark"
+              ? "rgba(245, 158, 11, 0.1)"
+              : "rgba(124, 58, 237, 0.1)",
+          borderColor: mode === "dark" ? "#f59e0b" : "#7c3aed",
+          color: mode === "dark" ? "#f59e0b" : "#7c3aed",
+        },
+      }}
+      variant="outlined"
+    >
+      {text}
+    </Button>
+  </motion.div>
+);
 
 const Projects = ({ mode }) => {
   const ref = useRef(null);
@@ -23,8 +51,8 @@ const Projects = ({ mode }) => {
 
   const item = {
     hidden: { opacity: 0, y: 50 },
-    show: { 
-      opacity: 1, 
+    show: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.5,
@@ -32,17 +60,22 @@ const Projects = ({ mode }) => {
     },
   };
 
+  const fadeInDelayed = (delay = 0.2) => ({
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { delay },
+  });
+
+  const bgGradient =
+    mode === "dark"
+      ? "bg-gradient-to-b from-purple-950 via-slate-950 to-purple-950"
+      : "bg-gradient-to-b to-red-500 from-violet-600 from-10%";
+
   return (
-    <div
-      className={
-        mode === "dark"
-          ? "bg-gradient-to-b from-purple-950 via-slate-950 to-purple-950 "
-          : "bg-gradient-to-b to-red-500 from-violet-600 from-10%"
-      }
-    >
+    <div className={bgGradient}>
       <div className="max-w-7xl mx-auto p-10">
         <Heading title={"My Recent Projects"} side={"center"} />
-        
+
         <motion.div
           ref={ref}
           variants={container}
@@ -52,15 +85,12 @@ const Projects = ({ mode }) => {
         >
           <Grid container spacing={4}>
             {projects.map((project, index) => (
-              <Grid
-                key={index}
-                size={{ sm: 12, md: 6, lg: 4 }}
-              >
+              <Grid key={index} size={{ sm: 12, md: 6, lg: 4 }}>
                 <motion.div
                   variants={item}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.02,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                   className="h-full overflow-hidden cursor-pointer shadow-2xl shadow-violet-950 bg-gray-500 rounded-lg bg-opacity-40 transform-gpu"
                 >
@@ -74,134 +104,35 @@ const Projects = ({ mode }) => {
                     />
 
                     <div className="p-5 flex flex-col gap-3 flex-grow">
-                      <motion.h1 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
+                      <motion.h1
+                        {...fadeInDelayed(0.2)}
                         className="text-xl font-semibold"
                       >
                         {project.title}
                       </motion.h1>
-                      <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
+                      <motion.p
+                        {...fadeInDelayed(0.3)}
                         className="text-gray-200 text-md font-normal"
                       >
                         {project.description}
                       </motion.p>
 
                       <div className="mt-auto">
-                        {project.hasAppLink ? (
-                          <>
-                            <motion.div
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <Button
-                                component="a"
-                                href={project.appLink}
-                                target="_blank"
-                                sx={{
-                                  width: '100%',
-                                  marginBottom: '0.75rem',
-                                  borderColor: "white",
-                                  color: "white",
-                                  textTransform: "capitalize",
-                                  '&:hover': {
-                                    backgroundColor: mode === 'dark' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(124, 58, 237, 0.1)',
-                                    borderColor: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                    color: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                  },
-                                }}
-                                variant="outlined"
-                              >
-                                View Application
-                              </Button>
-                            </motion.div>
-                            <motion.div
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <Button
-                                component="a"
-                                href={project.gitLink}
-                                target="_blank"
-                                sx={{
-                                  width: '100%',
-                                  borderColor: "white",
-                                  color: "white",
-                                  textTransform: "capitalize",
-                                  '&:hover': {
-                                    backgroundColor: mode === 'dark' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(124, 58, 237, 0.1)',
-                                    borderColor: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                    color: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                  },
-                                }}
-                                variant="outlined"
-                              >
-                                View Repo
-                              </Button>
-                            </motion.div>
-                          </>
-                        ) : (
-                          <>
-                            <motion.div
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <Button
-                                component="a"
-                                href={project.feLink}
-                                target="_blank"
-                                sx={{
-                                  width: '100%',
-                                  marginBottom: '0.75rem',
-                                  borderColor: "white",
-                                  color: "white",
-                                  textTransform: "capitalize",
-                                  '&:hover': {
-                                    backgroundColor: mode === 'dark' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(124, 58, 237, 0.1)',
-                                    borderColor: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                    color: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                  },
-                                }}
-                                variant="outlined"
-                              >
-                                View FE
-                              </Button>
-                            </motion.div>
-                            <motion.div
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <Button
-                                component="a"
-                                href={project.beLink}
-                                target="_blank"
-                                sx={{
-                                  width: '100%',
-                                  borderColor: "white",
-                                  color: "white",
-                                  textTransform: "capitalize",
-                                  '&:hover': {
-                                    backgroundColor: mode === 'dark' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(124, 58, 237, 0.1)',
-                                    borderColor: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                    color: mode === 'dark' ? '#f59e0b' : '#7c3aed',
-                                  },
-                                }}
-                                variant="outlined"
-                              >
-                                View BE
-                              </Button>
-                            </motion.div>
-                          </>
+                        {project.hasAppLink && (
+                          <ProjectButton
+                            href={project.appLink}
+                            text="View Application"
+                            mode={mode}
+                          />
                         )}
+                        <ProjectButton
+                          href={project.gitLink}
+                          text="View Repo"
+                          mode={mode}
+                        />
 
-                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.4 }}
+                        <motion.div
+                          {...fadeInDelayed(0.4)}
                           className="flex gap-2 flex-wrap justify-center items-center mt-6"
                         >
                           {project.techStack.map((tech, techIndex) => (
@@ -225,6 +156,16 @@ const Projects = ({ mode }) => {
       </div>
     </div>
   );
+};
+
+Projects.propTypes = {
+  mode: PropTypes.string.isRequired,
+};
+
+ProjectButton.propTypes = {
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  mode: PropTypes.string.isRequired,
 };
 
 export default Projects;

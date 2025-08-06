@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Heading from "../components/Heading";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from "prop-types";
 
 const Contact = ({ mode }) => {
   const [formData, setFormData] = useState({
@@ -15,11 +16,14 @@ const Contact = ({ mode }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://portfolio-server-69va.onrender.com/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://portfolio-server-69va.onrender.com/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
       if (data.success) {
@@ -190,6 +194,10 @@ const Contact = ({ mode }) => {
       </div>
     </div>
   );
+};
+
+Contact.propTypes = {
+  mode: PropTypes.string.isRequired,
 };
 
 export default Contact;

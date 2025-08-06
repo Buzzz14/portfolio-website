@@ -1,9 +1,9 @@
-import React from "react";
 import Skill from "../components/Skill";
 import Timeline from "../components/Timeline";
 import Heading from "../components/Heading";
 import Photo from "../assets/photo.jpg";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 const About = ({ mode }) => {
   return (
@@ -128,4 +128,10 @@ const About = ({ mode }) => {
   );
 };
 
+About.propTypes = {
+  mode: PropTypes.string.isRequired,
+};
+
 export default About;
+
+

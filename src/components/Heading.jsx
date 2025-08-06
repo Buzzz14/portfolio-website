@@ -1,5 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 const Heading = ({ title, side }) => {
   return (
@@ -13,6 +13,15 @@ const Heading = ({ title, side }) => {
       <div className="w-28 bg-red-500 h-1" />
     </motion.div>
   );
+};
+
+Heading.propTypes = {
+  title: PropTypes.string.isRequired,
+  side: PropTypes.oneOf(["start", "center", "end"]),
+};
+
+Heading.defaultProps = {
+  side: "center",
 };
 
 export default Heading;

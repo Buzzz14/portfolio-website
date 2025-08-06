@@ -9,6 +9,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import "./Navigation.css";
 import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const navigationItems = [
   { name: "Home", link: "/home", current: false },
@@ -157,3 +158,8 @@ export default function Navigation({ mode, toggleMode }) {
     </Disclosure>
   );
 }
+
+Navigation.propTypes = {
+  mode: PropTypes.string.isRequired,
+  toggleMode: PropTypes.func.isRequired,
+};

@@ -1,7 +1,7 @@
-import React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./Footer.css";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 const Footer = ({ mode }) => {
   return (
@@ -105,7 +105,7 @@ const Footer = ({ mode }) => {
                 className="text-xl font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
-                Let's connect.
+                Let&apos;s connect.
               </motion.p>
             </div>
           </div>
@@ -113,6 +113,10 @@ const Footer = ({ mode }) => {
       </div>
     </>
   );
+};
+
+Footer.propTypes = {
+  mode: PropTypes.string.isRequired,
 };
 
 export default Footer;

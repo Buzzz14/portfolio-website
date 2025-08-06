@@ -1,7 +1,7 @@
-import React from "react";
 import Hero from "../components/Hero";
 import Projects from "../components/Project/Project";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 const Home = ({ mode }) => {
   return (
@@ -16,6 +16,10 @@ const Home = ({ mode }) => {
       </div>
     </motion.div>
   );
+};
+
+Home.propTypes = {
+  mode: PropTypes.string.isRequired,
 };
 
 export default Home;

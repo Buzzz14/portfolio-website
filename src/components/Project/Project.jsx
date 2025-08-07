@@ -1,10 +1,9 @@
-import { useRef } from "react";
 import Grid from "@mui/material/Grid2";
 import { Button } from "@mui/material";
 import Heading from "../Heading";
 import "./Project.css";
 import { projects } from "../../data/Projects";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 
@@ -37,9 +36,6 @@ const ProjectButton = ({ href, text, mode }) => (
 );
 
 const Project = ({ mode }) => {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.1 });
-
   const location = useLocation();
   const isHomePage = location.pathname === "/" || location.pathname === "/home";
 
@@ -87,10 +83,10 @@ const Project = ({ mode }) => {
           <motion.div
             variants={container}
             initial="hidden"
-            animate={isInView ? "show" : "hidden"}
+            animate="show"
             className="py-10 px-6"
           >
-            <Grid container spacing={4} ref={containerRef}>
+            <Grid container spacing={4}>
               {projectsToShow.map((project, index) => (
                 <Grid key={index} size={{ sm: 12, md: 6, lg: 4 }}>
                   <motion.div

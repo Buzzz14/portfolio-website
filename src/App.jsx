@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
@@ -121,7 +121,11 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex justify-center items-center">
+      <div
+        className={`h-screen flex justify-center items-center ${
+          mode === "dark" ? "bg-gray-900" : "text-gray-100"
+        }`}
+      >
         <Loader />
       </div>
     );

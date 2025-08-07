@@ -3,8 +3,6 @@ import Grid from "@mui/material/Grid2";
 import { Button } from "@mui/material";
 import { projects } from "../data/Projects";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import PropTypes from "prop-types";
 
 const ProjectButton = ({ href, text, mode }) => (
@@ -36,9 +34,6 @@ const ProjectButton = ({ href, text, mode }) => (
 );
 
 const Projects = ({ mode }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -74,13 +69,12 @@ const Projects = ({ mode }) => {
   return (
     <div className={bgGradient}>
       <div className="max-w-7xl mx-auto p-10">
-        <Heading title={"My Recent Projects"} side={"center"} />
+        <Heading title={"My Projects"} side={"center"} />
 
         <motion.div
-          ref={ref}
           variants={container}
           initial="hidden"
-          animate={isInView ? "show" : "hidden"}
+          animate="show"
           className="py-10"
         >
           <Grid container spacing={4}>

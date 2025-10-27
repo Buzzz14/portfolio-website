@@ -17,82 +17,11 @@ const App = () => {
   });
 
   const [showScrollIcon, setShowScrollIcon] = useState(false);
-  const [loading, setLoading] = useState(true);
   const controls = useAnimation();
 
   useEffect(() => {
     localStorage.setItem("mode", JSON.stringify(mode));
   }, [mode]);
-
-  useEffect(() => {
-    const minLoadTime = 2000;
-    const startTime = Date.now();
-
-    const handleLoadComplete = () => {
-      const elapsedTime = Date.now() - startTime;
-      const remainingTime = minLoadTime - elapsedTime;
-
-      setTimeout(
-        () => {
-          setLoading(false);
-        },
-        remainingTime > 0 ? remainingTime : 0
-      );
-    };
-
-    const checkImagesLoaded = () => {
-      const images = document.querySelectorAll("img");
-      let loadedImages = 0;
-
-      if (images.length === 0) {
-        handleLoadComplete();
-        return;
-      }
-
-      images.forEach((img) => {
-        if (img.complete && img.naturalHeight !== 0) {
-          loadedImages++;
-        } else {
-          img.addEventListener("load", () => {
-            loadedImages++;
-            if (loadedImages === images.length) {
-              handleLoadComplete();
-            }
-          });
-
-          img.addEventListener("error", () => {
-            loadedImages++;
-            if (loadedImages === images.length) {
-              handleLoadComplete();
-            }
-          });
-        }
-      });
-
-      if (loadedImages === images.length) {
-        handleLoadComplete();
-      }
-    };
-
-    const observer = new MutationObserver(() => {
-      checkImagesLoaded();
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    document.fonts.ready.then(checkImagesLoaded);
-
-    if (document.readyState === "complete") {
-      checkImagesLoaded();
-    } else {
-      window.addEventListener("load", checkImagesLoaded);
-    }
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("load", checkImagesLoaded);
-    };
-  }, []);
 
   const toggleMode = () => {
     setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
@@ -118,18 +47,6 @@ const App = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [controls]);
-
-  if (loading) {
-    return (
-      <div
-        className={`h-screen flex justify-center items-center ${
-          mode === "dark" ? "bg-gray-900" : "text-gray-100"
-        }`}
-      >
-        <Loader />
-      </div>
-    );
-  }
 
   return (
     <div className={`${mode === "dark" ? "bg-purple-950" : "bg-red-500"}`}>

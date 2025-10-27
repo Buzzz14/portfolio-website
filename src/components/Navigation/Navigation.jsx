@@ -6,10 +6,11 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import "./Navigation.css";
 import { useLocation, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const navigationItems = [
   { name: "Home", link: "/home", current: false },
@@ -26,6 +27,39 @@ export default function Navigation({ mode, toggleMode }) {
   const [navigation, setNavigation] = useState(navigationItems);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const underlineRefs = useRef([]);
+  const iconRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.set(underlineRefs.current, { scaleX: 0, transformOrigin: "left" });
+    gsap.from(".links", { y: -10, opacity: 0, stagger: 0.2 });
+    gsap.from("#a", { y: -10, opacity: 0, stagger: 0.5 });
+    gsap.from("#b", { y: 10, opacity: 0, stagger: 0.5 });
+  }, []);
+
+  const handleMouseEnter = (index) => {
+    gsap.to(underlineRefs.current[index], {
+      scaleX: 1,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
+  const handleMouseLeave = (index) => {
+    gsap.to(underlineRefs.current[index], {
+      scaleX: 0,
+      duration: 0.3,
+      ease: "power2.in",
+    });
+  };
+
+  const handleMouseEnter1 = () => {
+    gsap.to(iconRef.current, { scale: 1.5, duration: 0.25 });
+  };
+
+  const handleMouseLeave1 = () => {
+    gsap.to(iconRef.current, { scale: 1, duration: 0.25 });
+  };
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -34,8 +68,12 @@ export default function Navigation({ mode, toggleMode }) {
       current: item.link === currentPath,
     }));
     setNavigation(updatedNavigation);
-    setIsOpen(false); // Close mobile menu when route changes
+    setIsOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    underlineRefs.current = [];
+  }, []);
 
   return (
     <Disclosure
@@ -79,35 +117,44 @@ export default function Navigation({ mode, toggleMode }) {
                     }
                     onClick={() => close()}
                   >
-                    SB
+                    <span id="a" className="inline-block">
+                      S
+                    </span>
+                    <span id="b" className="inline-block">
+                      B
+                    </span>
                   </Link>
                 </div>
                 <div className="hidden md:ml-6 md:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation.map((item, index) => (
                       <Link
                         key={item.name}
                         to={item.link}
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={() => handleMouseLeave(index)}
                         aria-current={item.current ? "page" : undefined}
-                        className={classNames(
-                          item.current
-                            ? mode === "light"
-                              ? "curr-light"
-                              : "curr-dark"
-                            : mode === "light"
-                            ? "under-light"
-                            : "under-dark",
-                          "rounded-md py-2 text-xl pe-8 relative"
-                        )}
+                        className="links rounded-md py-2 text-xl pe-8 relative"
                       >
                         {item.name}
+                        <div
+                          ref={(el) => (underlineRefs.current[index] = el)}
+                          className={
+                            mode === "dark"
+                              ? "h-[2px] mt-1 bg-white"
+                              : "h-[2px] mt-1 bg-violet-600"
+                          }
+                        ></div>
                       </Link>
                     ))}
                   </div>
                 </div>
                 <div
                   onClick={toggleMode}
-                  className="md:flex items-center cursor-pointer hover:scale-125 transition duration-700 ease-in-out hidden"
+                  ref={iconRef}
+                  onMouseEnter={() => handleMouseEnter1()}
+                  onMouseLeave={() => handleMouseLeave1()}
+                  className="md:flex items-center cursor-pointer hidden"
                 >
                   {mode === "dark" ? (
                     <LightModeIcon sx={{ color: "white" }} />
@@ -131,6 +178,7 @@ export default function Navigation({ mode, toggleMode }) {
                   <LightModeIcon sx={{ color: "white" }} />
                 )}
               </div>
+
               {navigation.map((item) => (
                 <Link
                   key={item.name}

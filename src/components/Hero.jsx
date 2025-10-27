@@ -42,15 +42,15 @@ const Hero = ({ mode }) => {
             >
               Hello, I&apos;m
             </motion.p>
-            <motion.h1
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               className="text-6xl sm:text-6xl md:text-7xl text-white font-extrabold"
             >
               Sushan Bajracharya
-            </motion.h1>
-            <motion.div
+            </motion.p>
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
@@ -60,7 +60,7 @@ const Hero = ({ mode }) => {
               <span>
                 <Cursor />
               </span>
-            </motion.div>
+            </motion.p>
           </div>
 
           <motion.div

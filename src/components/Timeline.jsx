@@ -42,7 +42,7 @@ const Timeline = () => {
               <h3 className="font-semibold text-xl">{item.title}</h3>
               <h4 className="text-lg">{item.institution}</h4>
               {item.type === "degree" ? (
-                item.gpa && <p className="text-sm">GPA: {item.gpa}</p>
+                item.grade && <p className="text-sm">Grade: {item.grade}</p>
               ) : (
                 <p className="text-sm">{item.description}</p>
               )}

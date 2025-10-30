@@ -8,13 +8,4 @@ export const jobs = [
     date: "2022-02",
     duration: "February 2022 to April 2022 (3 months)",
   },
-  {
-    type: "job",
-    title: "Frontend Developer - Internship",
-    institution: "Axis Infotech Pvt. Ltd.",
-    description:
-      "Contributed to building a scalable eCommerce platform using the Next.js App Router, implementing a clean routing architecture with support for layouts and loading states. Developed responsive and reusable React components using Ant Design and custom UI elements styled with Tailwind CSS. Efficiently managed API requests and caching with TanStack Query and Axios. Collaborated closely with the development team using Git and GitHub for version control, while focusing on responsive UI and effective state management to ensure a smooth user experience across devices.",
-    date: "2025-02",
-    duration: "February 2025 to April 2025 (3 months)",
-  },
 ];

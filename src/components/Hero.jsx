@@ -9,7 +9,8 @@ const Hero = ({ mode }) => {
   const [text] = useTypewriter({
     words: [
       "a Frontend Developer.",
-      "React Developer.",
+      "a Full Stack Developer.",
+      "a React Developer.",
       "a JavaScript Enthusiast.",
       "a Problem Solver.",
       "a Tech Learner.",

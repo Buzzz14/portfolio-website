@@ -57,8 +57,8 @@ export const projects = [
       "Tailwind",
       "MongoDB",
     ],
-    gitLink: "https://github.com/kusumghimire/axis-ecommerce-v1",
-    hasAppLink: true,
+    gitLink: "https://github.com/Buzzz14/secure-auth-system",
+    // hasAppLink: true,
   },
   {
     title: "Text-Master",

@@ -22,8 +22,8 @@ const ProjectButton = ({ href, text, mode }) => (
             mode === "dark"
               ? "rgba(245, 158, 11, 0.1)"
               : "rgba(124, 58, 237, 0.1)",
-          borderColor: mode === "dark" ? "#f59e0b" : "#7c3aed",
-          color: mode === "dark" ? "#f59e0b" : "#7c3aed",
+          borderColor: mode === "dark" ? "#f59e0b" : "#ddd",
+          color: mode === "dark" ? "#f59e0b" : "#ddd",
         },
       }}
       variant="outlined"

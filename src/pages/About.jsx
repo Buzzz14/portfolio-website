@@ -53,16 +53,18 @@ const About = ({ mode }) => {
           >
             <h2 className="text-3xl font-semibold mb-4">Sushan Bajracharya</h2>
             <p className="text-lg leading-relaxed">
-              I am a dedicated, passionate, and enthusiastic individual who
-              thrives on continuous learning and personal growth. My proactive
-              approach and commitment to excellence drive me to make a
-              meaningful impact in every project I undertake.
+              I love creating web experiences that are interactive, dynamic, and
+              visually engaging. What began with HTML, CSS, and JavaScript has
+              grown into building full-fledged web applications using React,
+              Next.js, Tailwind CSS, and TypeScript.
             </p>
+
             <p className="text-lg leading-relaxed">
-              With a focus on developing solutions that merge creativity and
-              functionality, I bring both vision and adaptability to my work. I
-              am constantly exploring innovative ways to grow, eager to blend
-              new techniques with established practices.
+              Lately, I’ve been exploring animations and motion design with GSAP
+              and Three.js to bring interfaces to life. I’m focused on mastering
+              front-end and full-stack development, and I aim to expand into
+              React Native, progressive web apps, cross-platform development,
+              and other emerging platforms in the near future.
             </p>
 
             <motion.div
@@ -133,5 +135,3 @@ About.propTypes = {
 };
 
 export default About;
-
-

@@ -126,7 +126,7 @@ export default function Navigation({ mode, toggleMode }) {
                   </Link>
                 </div>
                 <div className="hidden md:ml-6 md:block">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 items-center">
                     {navigation.map((item, index) => (
                       <Link
                         key={item.name}
@@ -147,6 +147,17 @@ export default function Navigation({ mode, toggleMode }) {
                         ></div>
                       </Link>
                     ))}
+                    <a
+                      href="/Sushan_Bajracharya_Resume.pdf"
+                      download
+                      className={
+                        mode === "dark"
+                          ? "text-sm px-4 py-2 rounded-md ring-1 ring-gray-400 hover:bg-gray-800 transition"
+                          : "text-sm px-4 py-2 rounded-md ring-1 ring-violet-400 text-violet-700 hover:bg-violet-50 transition"
+                      }
+                    >
+                      Download CV
+                    </a>
                   </div>
                 </div>
                 <div
@@ -199,6 +210,19 @@ export default function Navigation({ mode, toggleMode }) {
                   {item.name}
                 </Link>
               ))}
+              <a
+                href="/Sushan_Bajracharya_Resume.pdf"
+                download
+                className={classNames(
+                  mode === "light"
+                    ? "text-gray-700 ring-1 ring-violet-400 hover:bg-violet-50"
+                    : "text-gray-100 ring-1 ring-gray-500 hover:bg-gray-800",
+                  "block rounded-md px-3 py-2 text-base font-normal text-center mt-2"
+                )}
+                onClick={() => close()}
+              >
+                Download CV
+              </a>
             </div>
           </DisclosurePanel>
         </>

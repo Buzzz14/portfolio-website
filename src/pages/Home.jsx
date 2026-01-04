@@ -1,9 +1,10 @@
 import Hero from "../components/Hero";
 import Projects from "../components/Project/Project";
 import { motion } from "framer-motion";
-import PropTypes from "prop-types";
+import { useMode } from "../context/ModeContext";
 
-const Home = ({ mode }) => {
+const Home = () => {
+  const { mode } = useMode();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -16,10 +17,6 @@ const Home = ({ mode }) => {
       </div>
     </motion.div>
   );
-};
-
-Home.propTypes = {
-  mode: PropTypes.string.isRequired,
 };
 
 export default Home;

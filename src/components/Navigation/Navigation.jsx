@@ -8,22 +8,27 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useLocation, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useMode } from "../../context/ModeContext";
 
 const navigationItems = [
   { name: "Home", link: "/home", current: false },
   { name: "About", link: "/about", current: false },
   { name: "Projects", link: "/projects", current: false },
-  { name: "Contact", link: "/contact", current: false },
+  // { name: "Contact", link: "/contact", current: false },
 ];
+
+function isHomePath(path) {
+  return path === "/" || path === "/home";
+}
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navigation({ mode, toggleMode }) {
+export default function Navigation() {
+  const { mode, toggleMode } = useMode();
   const [navigation, setNavigation] = useState(navigationItems);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -46,29 +51,63 @@ export default function Navigation({ mode, toggleMode }) {
   };
 
   const handleMouseLeave = (index) => {
-    gsap.to(underlineRefs.current[index], {
-      scaleX: 0,
-      duration: 0.3,
-      ease: "power2.in",
-    });
+    if (!navigation[index]?.current) {
+      gsap.to(underlineRefs.current[index], {
+        scaleX: 0,
+        duration: 0.3,
+        ease: "power2.in",
+      });
+    }
   };
 
-  const handleMouseEnter1 = () => {
+  const handleMouseEnterTwo = () => {
     gsap.to(iconRef.current, { scale: 1.5, duration: 0.25 });
   };
 
-  const handleMouseLeave1 = () => {
+  const handleMouseLeaveTwo = () => {
     gsap.to(iconRef.current, { scale: 1, duration: 0.25 });
   };
 
   useEffect(() => {
     const currentPath = location.pathname;
-    const updatedNavigation = navigationItems.map((item) => ({
-      ...item,
-      current: item.link === currentPath,
-    }));
+
+    const updatedNavigation = navigationItems.map((item) => {
+      if (item.link === "/home" && isHomePath(currentPath)) {
+        return { ...item, current: true };
+      }
+      return { ...item, current: item.link === currentPath };
+    });
+
     setNavigation(updatedNavigation);
+
     setIsOpen(false);
+
+    let currentIndex = navigationItems.findIndex((item) =>
+      item.link === "/home" && isHomePath(currentPath)
+        ? true
+        : item.link === currentPath
+    );
+
+    if (currentIndex === -1) {
+      currentIndex = navigationItems.findIndex((item) => item.link === currentPath);
+    }
+
+    if (currentIndex !== -1 && underlineRefs.current[currentIndex]) {
+      gsap.to(underlineRefs.current[currentIndex], {
+        scaleX: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
+    navigationItems.forEach((_item, idx) => {
+      if (idx !== currentIndex && underlineRefs.current[idx]) {
+        gsap.to(underlineRefs.current[idx], {
+          scaleX: 0,
+          duration: 0.3,
+          ease: "power2.in",
+        });
+      }
+    });
   }, [location]);
 
   useEffect(() => {
@@ -125,6 +164,7 @@ export default function Navigation({ mode, toggleMode }) {
                     </span>
                   </Link>
                 </div>
+
                 <div className="hidden md:ml-6 md:block">
                   <div className="flex space-x-4 items-center">
                     {navigation.map((item, index) => (
@@ -152,27 +192,36 @@ export default function Navigation({ mode, toggleMode }) {
                       download
                       className={
                         mode === "dark"
-                          ? "text-sm px-4 py-2 rounded-md ring-1 ring-gray-400 hover:bg-gray-800 transition"
-                          : "text-sm px-4 py-2 rounded-md ring-1 ring-violet-400 text-violet-700 hover:bg-violet-50 transition"
+                          ? "text-sm px-4 py-2 rounded-md ring-1 ring-gray-400 hover:bg-gray-700 transition"
+                          : "text-sm px-4 py-2 rounded-md ring-1 ring-violet-400 text-violet-700 hover:bg-violet-100 transition"
                       }
                     >
                       Download CV
                     </a>
                   </div>
                 </div>
-                <div
+
+                <button
+                  type="button"
                   onClick={toggleMode}
                   ref={iconRef}
-                  onMouseEnter={() => handleMouseEnter1()}
-                  onMouseLeave={() => handleMouseLeave1()}
+                  onMouseEnter={() => handleMouseEnterTwo()}
+                  onMouseLeave={() => handleMouseLeaveTwo()}
                   className="md:flex items-center cursor-pointer hidden"
+                  aria-pressed={mode === "dark"}
+                  aria-label={
+                    mode === "dark"
+                      ? "Switch to light mode"
+                      : "Switch to dark mode"
+                  }
+                  tabIndex={0}
                 >
                   {mode === "dark" ? (
                     <LightModeIcon sx={{ color: "white" }} />
                   ) : (
                     <DarkModeIcon sx={{ color: "#7c3aed" }} />
                   )}
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -210,13 +259,14 @@ export default function Navigation({ mode, toggleMode }) {
                   {item.name}
                 </Link>
               ))}
+
               <a
                 href="/Sushan_Bajracharya_Resume.pdf"
                 download
                 className={classNames(
                   mode === "light"
-                    ? "text-gray-700 ring-1 ring-violet-400 hover:bg-violet-50"
-                    : "text-gray-100 ring-1 ring-gray-500 hover:bg-gray-800",
+                    ? "text-gray-700 ring-1 ring-violet-400 hover:bg-violet-100"
+                    : "text-gray-100 ring-1 ring-gray-400 hover:bg-gray-700",
                   "block rounded-md px-3 py-2 text-base font-normal text-center mt-2"
                 )}
                 onClick={() => close()}
@@ -230,8 +280,3 @@ export default function Navigation({ mode, toggleMode }) {
     </Disclosure>
   );
 }
-
-Navigation.propTypes = {
-  mode: PropTypes.string.isRequired,
-  toggleMode: PropTypes.func.isRequired,
-};

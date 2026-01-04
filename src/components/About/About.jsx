@@ -20,7 +20,7 @@ const About = ({ mode }) => {
             className={
               mode === "dark"
                 ? "custom-shape-divider-2 fill-slate-950"
-                : "custom-shape-divider-2 fill-red-500 bg-gray-100"
+                : "custom-shape-divider-2 fill-violet-700 bg-gray-100"
             }
           >
             <svg

@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Brand Colors */
+  --color-primary: #7c3aed;
+  --color-primary-light: #a78bfa;
+  --color-primary-dark: #5b21b6;
+
+  --color-yellow: #f59e0b;
+  --color-yellow-light: #fde68a;
+  --color-yellow-dark: #b45309;
+
+  /* UI Colors */
+  /* --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray: #ddd;
+
+  --color-gray-dark: #111827;
+  --color-gray-light: #f3f4f6;
+  --color-border: #e5e7eb; */
+
+  /* For dark/light background usage */
+  /* --color-bg-dark: #18181b;
+  --color-bg-light: #f8fafc;
+  --color-text-dark: #d1d5db;
+  --color-text-light: #18181b; */
+
+  /* Misc Colors */
+  /* --color-toast-success: #4ade80;
+  --color-toast-error: #f87171; */
+
+  /* Overlay hover shades */
+  /* --color-hover-dark: rgba(245, 158, 11, 0.1);
+  --color-hover-light: rgba(124, 58, 237, 0.1); */
+}

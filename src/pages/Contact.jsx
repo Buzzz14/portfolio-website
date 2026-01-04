@@ -3,9 +3,10 @@ import Heading from "../components/Heading";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PropTypes from "prop-types";
+import { useMode } from "../context/ModeContext";
 
-const Contact = ({ mode }) => {
+const Contact = () => {
+  const { mode } = useMode();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -46,12 +47,17 @@ const Contact = ({ mode }) => {
     }));
   };
 
+  const getFocusRingClasses = () =>
+    mode === "dark"
+      ? "focus:ring-violet-500"
+      : "focus:ring-amber-500";
+
   return (
     <div
       className={
         mode === "dark"
           ? "bg-gradient-to-b from-purple-950 via-slate-950 to-purple-950"
-          : "bg-gradient-to-b to-red-500 from-violet-600 from-10%"
+          : "bg-gradient-to-b from-purple-950 via-violet-700 to-purple-950"
       }
     >
       <div className="max-w-4xl mx-auto p-10">
@@ -78,7 +84,7 @@ const Contact = ({ mode }) => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 rounded-md bg-white/5 border border-gray-400 text-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className={`w-full px-4 py-2 rounded-md bg-white/5 border border-gray-400 text-gray-100 focus:outline-none focus:ring-2 ${getFocusRingClasses()} focus:border-transparent`}
                   placeholder="Your name"
                 />
               </div>
@@ -97,7 +103,7 @@ const Contact = ({ mode }) => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 rounded-md bg-white/5 border border-gray-400 text-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className={`w-full px-4 py-2 rounded-md bg-white/5 border border-gray-400 text-gray-100 focus:outline-none focus:ring-2 ${getFocusRingClasses()} focus:border-transparent`}
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -116,7 +122,7 @@ const Contact = ({ mode }) => {
                   onChange={handleChange}
                   required
                   rows="4"
-                  className="w-full px-4 py-2 rounded-md bg-white/5 border border-gray-400 text-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
+                  className={`w-full px-4 py-2 rounded-md bg-white/5 border border-gray-400 text-gray-100 focus:outline-none focus:ring-2 ${getFocusRingClasses()} focus:border-transparent resize-none`}
                   placeholder="Your message..."
                 />
               </div>
@@ -194,10 +200,6 @@ const Contact = ({ mode }) => {
       </div>
     </div>
   );
-};
-
-Contact.propTypes = {
-  mode: PropTypes.string.isRequired,
 };
 
 export default Contact;

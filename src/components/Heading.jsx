@@ -10,7 +10,7 @@ const Heading = ({ title, side }) => {
       transition={{ duration: 0.5 }}
     >
       <h1 className="text-4xl font-semibold mb-4">{title}</h1>
-      <div className="w-28 bg-red-500 h-1" />
+      <div className="w-28 bg-violet-700 h-1" />
     </motion.div>
   );
 };

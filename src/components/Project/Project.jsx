@@ -4,8 +4,9 @@ import Heading from "../Heading";
 import "./Project.css";
 import { projects } from "../../data/Projects";
 import { motion } from "framer-motion";
-import PropTypes from "prop-types";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useMode } from "../../context/ModeContext";
+import ImageIcon from "@mui/icons-material/Image";
 
 const ProjectButton = ({ href, text, mode }) => (
   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
@@ -35,7 +36,8 @@ const ProjectButton = ({ href, text, mode }) => (
   </motion.div>
 );
 
-const Project = ({ mode }) => {
+const Project = () => {
+  const { mode } = useMode();
   const location = useLocation();
   const isHomePage = location.pathname === "/" || location.pathname === "/home";
 
@@ -74,7 +76,7 @@ const Project = ({ mode }) => {
         className={
           mode === "dark"
             ? "bg-gradient-to-b from-slate-950 from-20% to-purple-950 "
-            : "bg-gradient-to-b from-violet-600 from-20% to-red-500"
+            : "bg-gradient-to-b from-violet-700 from-20% to-purple-950"
         }
       >
         <div className="max-w-6xl mx-auto">
@@ -86,7 +88,7 @@ const Project = ({ mode }) => {
             animate="show"
             className="py-10 px-6"
           >
-            <Grid container spacing={4}>
+            <Grid container spacing={4} justifyContent="center">
               {projectsToShow.map((project, index) => (
                 <Grid key={index} size={{ sm: 12, md: 6, lg: 4 }}>
                   <motion.div
@@ -98,13 +100,19 @@ const Project = ({ mode }) => {
                     className="h-full overflow-hidden cursor-pointer shadow-2xl shadow-violet-950 bg-gray-500 rounded-lg bg-opacity-40 transform-gpu"
                   >
                     <div className="flex flex-col text-white h-full">
-                      <motion.img
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                        className="h-48 object-cover"
-                        src={project.src}
-                        alt={project.title}
-                      />
+                      {project.imageUrl ? (
+                        <motion.img
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                          className="h-48 object-cover"
+                          src={project.imageUrl}
+                          alt={project.title}
+                        />
+                      ) : (
+                        <div className="bg-gray-100 h-48 flex justify-center items-center text-gray-300">
+                          <ImageIcon fontSize="large" />
+                        </div>
+                      )}
 
                       <div className="p-5 flex flex-col gap-3 flex-grow">
                         <motion.h1
@@ -121,18 +129,21 @@ const Project = ({ mode }) => {
                         </motion.p>
 
                         <div className="mt-auto">
-                          {project.hasAppLink && (
+                          {project?.appLink && (
                             <ProjectButton
                               href={project.appLink}
                               text="View Application"
                               mode={mode}
                             />
                           )}
-                          <ProjectButton
-                            href={project.gitLink}
-                            text="View Repo"
-                            mode={mode}
-                          />
+
+                          {project?.gitLink && (
+                            <ProjectButton
+                              href={project.gitLink}
+                              text="View Repo"
+                              mode={mode}
+                            />
+                          )}
 
                           <motion.div
                             {...fadeInDelayed(0.4)}
@@ -154,22 +165,32 @@ const Project = ({ mode }) => {
                   </motion.div>
                 </Grid>
               ))}
+              
+              <Button
+                component={Link}
+                to="/projects"
+                variant="outlined"
+                sx={{
+                  padding: "0.75rem 2rem",
+                  textTransform: "capitalize",
+                  // fontSize: "1.1rem",
+                  borderColor: "#f59e0b",
+                  color: "#f59e0b",
+                  "&:hover": {
+                    borderColor: "#fbbf24",
+                    color: "#fbbf24",
+                    background: "transparent",
+                  },
+                }}
+              >
+                View All
+              </Button>
             </Grid>
           </motion.div>
         </div>
       </div>
     </div>
   );
-};
-
-Project.propTypes = {
-  mode: PropTypes.string.isRequired,
-};
-
-ProjectButton.propTypes = {
-  href: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  mode: PropTypes.string.isRequired,
 };
 
 export default Project;

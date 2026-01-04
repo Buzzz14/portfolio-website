@@ -6,13 +6,14 @@ import "react-vertical-timeline-component/style.min.css";
 import SchoolIcon from "@mui/icons-material/School";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import WorkIcon from "@mui/icons-material/Work";
-import { degrees } from "../data/Degrees";
-import { jobs } from "../data/Jobs";
+import { timeline } from "../data/Timeline";
 
 const Timeline = () => {
-  const timelineData = [...degrees, ...jobs].sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
-  );
+  const timelineData = [...timeline].sort((a, b) => {
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return new Date(a.date) - new Date(b.date);
+  });
 
   return (
     <div className="pb-16 px-6">

@@ -2,29 +2,58 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Photo from "../assets/photo.jpg";
-import PropTypes from "prop-types";
+import Photo from "../assets/photo.jpeg";
+import { useMode } from "../context/ModeContext";
+import gsap from "gsap";
+import { useRef } from "react";
+import { words } from "../data/Typewriter";
 
-const Hero = ({ mode }) => {
+const Hero = () => {
+  const { mode } = useMode();
+
+  const profileRef = useRef();
+  const profileOverlayRef = useRef();
+
   const [text] = useTypewriter({
-    words: [
-      "a Frontend Developer.",
-      "a Full Stack Developer.",
-      "a React Developer.",
-      "a JavaScript Enthusiast.",
-      "a Problem Solver.",
-      "a Tech Learner.",
-    ],
+    words: words,
     loop: 0,
     typeSpeed: 120,
   });
+
+  const onMouseMove = (dets) => {
+    const rect = profileRef.current.getBoundingClientRect();
+    const x = dets.clientX - rect.left;
+    const y = dets.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -15;
+    const rotateY = ((x - centerX) / centerX) * 15;
+
+    gsap.to(profileRef.current, {
+      rotateX: rotateX,
+      rotateY: rotateY,
+      duration: 0.3,
+      ease: "circ.out",
+    });
+  };
+
+  const onMouseLeave = () => {
+    gsap.to(profileRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.5,
+      ease: "back.out(1.7)",
+    });
+  };
 
   return (
     <div
       className={
         mode === "dark"
           ? "bg-gradient-to-b from-purple-950 to-slate-950"
-          : "bg-gradient-to-b to-violet-600 from-red-500 from-25%"
+          : "bg-gradient-to-b from-purple-950 to-violet-700"
       }
     >
       <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between px-8 py-20">
@@ -149,39 +178,53 @@ const Hero = ({ mode }) => {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="hidden lg:block flex-1 mt-12 md:mt-0 relative max-w-lg"
-        >
-          <div className="relative z-10">
-            <img
-              src={Photo}
-              alt="Profile"
-              className="rounded-lg shadow-2xl w-full max-w-md mx-auto"
-            />
+        <div className="relative" style={{ perspective: "1000px" }}>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            ref={profileRef}
+            className="hidden lg:block flex-1 w-[500px] mt-12 md:mt-0 relative max-w-lg"
+            style={{
+              transformStyle: "preserve-3d",
+            }}
+          >
+            <div className="relative">
+              <img
+                src={Photo}
+                alt="Profile"
+                id="profile"
+                className="relative rounded-lg shadow-2xl w-full aspect-square object-cover max-w-md mx-auto z-20"
+              />
+
+              <div
+                className={`absolute inset-0 rounded-lg z-10 ${
+                  mode === "dark"
+                    ? "bg-gradient-to-tr from-purple-500/20 to-transparent"
+                    : "bg-gradient-to-tr from-white/15 to-transparent"
+                }`}
+              />
+            </div>
+
             <div
-              className={`absolute inset-0 rounded-lg ${
-                mode === "dark"
-                  ? "bg-gradient-to-tr from-purple-500/20 to-transparent"
-                  : "bg-gradient-to-tr from-white/15 to-transparent"
+              className={`absolute inset-0 rounded-lg transform rotate-3 ${
+                mode === "dark" ? "bg-violet-700/10" : "bg-white/10"
               }`}
             />
-          </div>
+          </motion.div>
+
           <div
-            className={`absolute inset-0 rounded-lg transform rotate-3 z-0 ${
-              mode === "dark" ? "bg-red-500/10" : "bg-white/10"
-            }`}
-          />
-        </motion.div>
+            id="profile-overlay"
+            ref={profileOverlayRef}
+            className="absolute inset-0 w-full h-full cursor-pointer bg-transparent"
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
+            style={{ transformStyle: "preserve-3d", pointerEvents: "auto" }}
+          ></div>
+        </div>
       </div>
     </div>
   );
-};
-
-Hero.propTypes = {
-  mode: PropTypes.string.isRequired,
 };
 
 export default Hero;

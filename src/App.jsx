@@ -9,23 +9,12 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
+import { useMode } from "./context/ModeContext";
 
 const App = () => {
-  const [mode, setMode] = useState(() => {
-    const savedMode = localStorage.getItem("mode");
-    return savedMode ? JSON.parse(savedMode) : "dark";
-  });
-
+  const { mode } = useMode();
   const [showScrollIcon, setShowScrollIcon] = useState(false);
   const controls = useAnimation();
-
-  useEffect(() => {
-    localStorage.setItem("mode", JSON.stringify(mode));
-  }, [mode]);
-
-  const toggleMode = () => {
-    setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
-  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -49,20 +38,20 @@ const App = () => {
   }, [controls]);
 
   return (
-    <div className={`${mode === "dark" ? "bg-purple-950" : "bg-red-500"}`}>
-      <Navigation mode={mode} toggleMode={toggleMode} />
+    <div className="bg-purple-950">
+      <Navigation />
 
       <div>
         <Routes>
-          <Route path="/" element={<Home mode={mode} />} />
-          <Route path="/home" element={<Home mode={mode} />} />
-          <Route path="/about" element={<About mode={mode} />} />
-          <Route path="/projects" element={<Projects mode={mode} />} />
-          <Route path="/contact" element={<Contact mode={mode} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
 
-      <Footer mode={mode} />
+      <Footer />
 
       {showScrollIcon && (
         <motion.div

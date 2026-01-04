@@ -1,17 +1,18 @@
 import Skill from "../components/Skill";
 import Timeline from "../components/Timeline";
 import Heading from "../components/Heading";
-import Photo from "../assets/photo.jpg";
+import Photo from "../assets/photo.jpeg";
 import { motion } from "framer-motion";
-import PropTypes from "prop-types";
+import { useMode } from "../context/ModeContext";
 
-const About = ({ mode }) => {
+const About = () => {
+  const { mode } = useMode();
   return (
     <div
       className={
         mode === "dark"
           ? "bg-gradient-to-b from-purple-950 via-slate-950 to-purple-950"
-          : "bg-gradient-to-b to-red-500 from-violet-600 from-10%"
+          : "bg-gradient-to-b from-purple-950 via-violet-700 to-purple-950"
       }
     >
       <div className="max-w-7xl mx-auto px-4 py-20">
@@ -28,7 +29,7 @@ const About = ({ mode }) => {
               <img
                 src={Photo}
                 alt="Profile"
-                className="rounded-lg shadow-2xl w-full max-w-md mx-auto"
+                className="rounded-lg shadow-2xl w-full aspect-square object-cover max-w-md mx-auto"
               />
               <div
                 className={`absolute inset-0 rounded-lg ${
@@ -40,7 +41,7 @@ const About = ({ mode }) => {
             </div>
             <div
               className={`absolute inset-0 rounded-lg transform rotate-3 z-0 ${
-                mode === "dark" ? "bg-red-500/10" : "bg-white/10"
+                mode === "dark" ? "bg-violet-700/10" : "bg-white/10"
               }`}
             />
           </motion.div>
@@ -53,18 +54,16 @@ const About = ({ mode }) => {
           >
             <h2 className="text-3xl font-semibold mb-4">Sushan Bajracharya</h2>
             <p className="text-lg leading-relaxed">
-              I love creating web experiences that are interactive, dynamic, and
-              visually engaging. What began with HTML, CSS, and JavaScript has
-              grown into building full-fledged web applications using React,
-              Next.js, Tailwind CSS, and TypeScript.
+              I build user-focused web experiences that are interactive,
+              dynamic, and visually engaging. What began with HTML, CSS, and
+              JavaScript has grown into developing full-scale applications using
+              React, Next.js, Tailwind CSS, TypeScript, Node.js, and Express.js.
             </p>
 
             <p className="text-lg leading-relaxed">
-              Lately, I’ve been exploring animations and motion design with GSAP
-              and Three.js to bring interfaces to life. I’m focused on mastering
-              front-end and full-stack development, and I aim to expand into
-              React Native, progressive web apps, cross-platform development,
-              and other emerging platforms in the near future.
+              I am currently focused on mastering end-to-end web application
+              architecture, including deployment, automation, and CI/CD
+              practices to deliver reliable and scalable applications.
             </p>
 
             <motion.div
@@ -128,10 +127,6 @@ const About = ({ mode }) => {
       </div>
     </div>
   );
-};
-
-About.propTypes = {
-  mode: PropTypes.string.isRequired,
 };
 
 export default About;

@@ -3,7 +3,8 @@ import Grid from "@mui/material/Grid2";
 import { Button } from "@mui/material";
 import { projects } from "../data/Projects";
 import { motion } from "framer-motion";
-import PropTypes from "prop-types";
+import { useMode } from "../context/ModeContext";
+import ImageIcon from "@mui/icons-material/Image";
 
 const ProjectButton = ({ href, text, mode }) => (
   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
@@ -33,7 +34,8 @@ const ProjectButton = ({ href, text, mode }) => (
   </motion.div>
 );
 
-const Projects = ({ mode }) => {
+const Projects = () => {
+  const { mode } = useMode();
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -64,7 +66,7 @@ const Projects = ({ mode }) => {
   const bgGradient =
     mode === "dark"
       ? "bg-gradient-to-b from-purple-950 via-slate-950 to-purple-950"
-      : "bg-gradient-to-b to-red-500 from-violet-600 from-10%";
+      : "bg-gradient-to-b from-purple-950 via-violet-700 to-purple-950";
 
   return (
     <div className={bgGradient}>
@@ -89,13 +91,19 @@ const Projects = ({ mode }) => {
                   className="h-full overflow-hidden cursor-pointer shadow-2xl shadow-violet-950 bg-gray-500 rounded-lg bg-opacity-40 transform-gpu"
                 >
                   <div className="flex flex-col text-white h-full">
-                    <motion.img
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                      className="h-48 object-cover"
-                      src={project.src}
-                      alt={project.title}
-                    />
+                    {project.imageUrl ? (
+                      <motion.img
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                        className="h-48 object-cover"
+                        src={project.imageUrl}
+                        alt={project.title}
+                      />
+                    ) : (
+                      <div className="bg-gray-100 h-48 flex justify-center items-center text-gray-300">
+                        <ImageIcon fontSize="large" />
+                      </div>
+                    )}
 
                     <div className="p-5 flex flex-col gap-3 flex-grow">
                       <motion.h1
@@ -112,18 +120,21 @@ const Projects = ({ mode }) => {
                       </motion.p>
 
                       <div className="mt-auto">
-                        {project.hasAppLink && (
+                        {project?.appLink && (
                           <ProjectButton
                             href={project.appLink}
                             text="View Application"
                             mode={mode}
                           />
                         )}
-                        <ProjectButton
-                          href={project.gitLink}
-                          text="View Repo"
-                          mode={mode}
-                        />
+
+                        {project?.gitLink && (
+                          <ProjectButton
+                            href={project.gitLink}
+                            text="View Repo"
+                            mode={mode}
+                          />
+                        )}
 
                         <motion.div
                           {...fadeInDelayed(0.4)}
@@ -150,16 +161,6 @@ const Projects = ({ mode }) => {
       </div>
     </div>
   );
-};
-
-Projects.propTypes = {
-  mode: PropTypes.string.isRequired,
-};
-
-ProjectButton.propTypes = {
-  href: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  mode: PropTypes.string.isRequired,
 };
 
 export default Projects;
